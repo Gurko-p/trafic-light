@@ -7,9 +7,9 @@ function TrafficLight(props){
         <div className='traffic-light-container'>
             <div className='section-container'>
                 <div className='section-container'>
-                    <Light class={props.stateOfTrafficLight[1]} />    
-                    <Light class={props.stateOfTrafficLight[2]} />   
-                    <Light class={props.stateOfTrafficLight[3]} />    
+                    <Light state={props.stateOfTrafficLight[1]} />    
+                    <Light state={props.stateOfTrafficLight[2]} />   
+                    <Light state={props.stateOfTrafficLight[3]} />    
                 </div> 
             </div>  
         </div>

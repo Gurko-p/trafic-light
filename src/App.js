@@ -1,43 +1,57 @@
 import Light from './components/Light';
+import React, { useEffect, useState } from 'react';
 import TrafficLight from './components/TrafficLight';
 
-let trafficStateMas = {
-  1: {
+let trafficStateMas = [
+  {
     1: "red active",
     2: "inactive",
     3: "inactive"
   },
-  2: {
+  {
     1: "red active",
     2: "orange active",
     3: "inactive"
   },
-  3: {
+  {
     1: "inactive",
     2: "inactive",
     3: "green active"
   },
-  4: {
+  {
     1: "inactive",
     2: "inactive",
     3: "green pulsate"
   },
-  5: {
+  {
     1: "inactive",
     2: "orange active",
     3: "inactive"
   },
-}
+]
 
+  function App() {
+    const [count, setCount] = useState(0);
 
+    useEffect(
+      () => {
+       const timer = setInterval(() => { 
+        setCount(
+            (prevCount) => {
+              const nextCount = prevCount + 1
+             return  nextCount >= trafficStateMas.length ? 0 : nextCount
+            })
+        }, 1000);
+        return () => {
+          clearInterval(timer);
+        }
+      }, []
+    )
+    return (
+      <div className="main-container">
+        <TrafficLight stateOfTrafficLight={trafficStateMas[count]} />
+      </div>
+    );
+  }
 
-
-function App() {
-  return (
-    <div className="main-container">
-      <TrafficLight stateOfTrafficLight={trafficStateMas[1]} />
-    </div>
-  );
-}
-
-export default App;
+  export default App;
